@@ -16,7 +16,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.key.*
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import magiceight_ball.composeapp.generated.resources.Res
 import magiceight_ball.composeapp.generated.resources.check_icon
 import magiceight_ball.composeapp.generated.resources.delete_icon
@@ -24,10 +23,11 @@ import org.example.project.settings.presentation.SettingsWindowEvent
 import org.example.project.settings.presentation.SettingsWindowState
 import org.example.project.settings.presentation.SettingsWindowViewModel
 import org.jetbrains.compose.resources.painterResource
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun SettingsWindow(onBack: () -> Unit) {
-    val viewModel: SettingsWindowViewModel = viewModel { SettingsWindowViewModel() }
+    val viewModel = koinViewModel<SettingsWindowViewModel>()
     val state: SettingsWindowState by viewModel.state.collectAsStateWithLifecycle()
     SettingsWindowContent(state, viewModel::onEvent, onBack)
 }

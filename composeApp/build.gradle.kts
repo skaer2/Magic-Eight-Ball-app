@@ -22,9 +22,21 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation("androidx.datastore:datastore:1.2.1")
             implementation("androidx.datastore:datastore-preferences:1.2.1")
+            implementation(project.dependencies.platform(libs.koin.bom))
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+
+            implementation(libs.kotlin.testJunit)
+//            implementation(libs.junit.jupiter.api)
+//            implementation(libs.junit.jupiter.params)
+//            runtimeOnly(libs.junit.jupiter.engine)
+//            runtimeOnly(libs.junit.platform.launcher)
+
+            implementation(libs.mockito)
         }
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -46,3 +58,6 @@ compose.desktop {
         }
     }
 }
+//dependencies {
+//    testImplementation(kotlin("test"))
+//}

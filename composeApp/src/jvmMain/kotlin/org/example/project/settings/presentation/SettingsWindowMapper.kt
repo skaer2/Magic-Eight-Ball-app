@@ -1,7 +1,6 @@
 package org.example.project.settings.presentation
 
 class SettingsWindowMapper {
-    //TODO: rename
-    fun getState(additionalAnswers: List<String>, configuration: SettingsWindowConfiguration) =
-        SettingsWindowState(additionalAnswers, configuration.newAnswerValue)
+    fun getState(answers: List<String>, configuration: SettingsWindowConfiguration) =
+        SettingsWindowState(answers, configuration.newAnswerValue)
 }

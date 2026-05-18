@@ -8,10 +8,10 @@ import kotlinx.coroutines.launch
 import org.example.project.common.presentation.Constants
 import org.example.project.settings.data.AnswersDataSource
 
-class SettingsWindowViewModel : ViewModel() {
-
-    private val answersDataSource = AnswersDataSource.instance
-    private val stateMapper = SettingsWindowMapper()
+class SettingsWindowViewModel(
+    private val stateMapper: SettingsWindowMapper,
+    private val answersDataSource: AnswersDataSource,
+) : ViewModel() {
 
     private val configurationFlow = MutableStateFlow(SettingsWindowConfiguration())
 
@@ -33,7 +33,7 @@ class SettingsWindowViewModel : ViewModel() {
         when (event) {
             is SettingsWindowEvent.OnNewAnswerAdded -> {
                 val trimmedValue = event.newAnswer.trim()
-                if (answerAddJob?.isActive == true && trimmedValue.isBlank()) return
+                if (answerAddJob?.isActive == true || trimmedValue.isBlank()) return
                 answerAddJob = viewModelScope.launch {
                     answersDataSource.addAnswer(trimmedValue)
                     configurationFlow.update {

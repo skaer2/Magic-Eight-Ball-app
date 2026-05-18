@@ -11,9 +11,12 @@ import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
 import magiceight_ball.composeapp.generated.resources.Res
 import magiceight_ball.composeapp.generated.resources.info_menu_icon
+import org.example.project.main.di.mainWindowModule
 import org.example.project.main.ui.MainWindow
+import org.example.project.settings.di.settingsWindowModule
 import org.example.project.settings.ui.SettingsWindow
 import org.jetbrains.compose.resources.painterResource
+import org.koin.core.context.startKoin
 
 private sealed interface MyWindow {
     data object Main : MyWindow
@@ -27,6 +30,8 @@ data object SettingsRoute : ScreenRoute
 data object MainRoute : ScreenRoute
 
 fun main() = application {
+    initKoin()
+
     val windows = remember { mutableStateListOf<MyWindow>(MyWindow.Main) }
     windows.forEach { window ->
         when (window) {
@@ -111,5 +116,12 @@ private fun DeveloperInfoWindow(onCloseRequest: () -> Unit) {
         title = "О разработчике"
     ) {
 
+    }
+}
+
+fun initKoin() {
+    startKoin {
+        printLogger()
+        modules(mainWindowModule, settingsWindowModule)
     }
 }

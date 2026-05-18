@@ -2,16 +2,17 @@
 androidx-lifecycle = "2.10.0"
 composeHotReload = "1.0.0"
 composeMultiplatform = "1.10.3"
-junit = "4.13.2"
 kotlin = "2.3.20"
 kotlinx-coroutines = "1.10.2"
 material3 = "1.10.0-alpha05"
 multiplatform-nav3-ui = "1.0.0-alpha05"
+koin-bom = "4.1.1"
+mockito-version = "5.23.0"
+junit = "6.0.3"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-testJunit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
-junit = { module = "junit:junit", version.ref = "junit" }
 androidx-lifecycle-viewmodelCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtimeCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "composeMultiplatform" }
@@ -22,6 +23,15 @@ compose-components-resources = { module = "org.jetbrains.compose.components:comp
 compose-uiToolingPreview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "composeMultiplatform" }
 kotlinx-coroutinesSwing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
 jetbrains-navigation3-ui = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version.ref = "multiplatform-nav3-ui" }
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin-bom" }
+koin-core = { module = "io.insert-koin:koin-core" }
+koin-compose = { module = "io.insert-koin:koin-compose" }
+koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel" }
+mockito = { module = "org.mockito:mockito-core", version.ref = "mockito-version" }
+#junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
+#junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit" }
+#junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
+#junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 
 [plugins]
 composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "composeHotReload" }

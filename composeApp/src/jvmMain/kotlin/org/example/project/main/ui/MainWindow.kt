@@ -20,10 +20,11 @@ import org.example.project.main.presentation.Ball
 import org.example.project.main.presentation.MainWindowEvent
 import org.example.project.main.presentation.MainWindowState
 import org.example.project.main.presentation.MainWindowViewModel
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun MainWindow(onSettingsNavigate: () -> Unit) {
-    val viewModel: MainWindowViewModel = viewModel { MainWindowViewModel() }
+    val viewModel = koinViewModel<MainWindowViewModel>()
     val state by viewModel.state.collectAsStateWithLifecycle()
     MainWindowContent(state, viewModel::onEvent, onSettingsNavigate)
 }

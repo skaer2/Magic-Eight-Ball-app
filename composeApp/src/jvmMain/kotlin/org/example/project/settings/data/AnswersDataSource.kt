@@ -7,15 +7,20 @@ import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
 import java.util.prefs.Preferences
+import kotlin.String
+import kotlin.collections.List
 
 private const val SERIALIZER_SEPARATOR = "|"
 
 private const val INIT_FLAG_ID = "defaults_initialized"
 
-class AnswersDataSource private constructor() {
-    private val initFlagPrefs = Preferences.userRoot().node("initFlag")
+class AnswersDataSource(
+    preferences: Preferences,
+    dataStoreFactory: DataStoreFactory,
+) {
+    private val initFlagPrefs = preferences.node("initFlag")
 
-    private val answersDataStore: DataStore<List<String>> = DataStoreFactory.create(
+    private val answersDataStore: DataStore<List<String>> = dataStoreFactory.create(
         serializer = ListStringSerializer,
         produceFile = { File(System.getProperty("java.io.tmpdir"), "magicEightBall.preferences_pb") }
     )
@@ -50,10 +55,6 @@ class AnswersDataSource private constructor() {
         answersDataStore.updateData {
             it.toMutableList().apply { removeAt(index) }
         }
-    }
-
-    companion object {
-        val instance = AnswersDataSource()
     }
 }
 
