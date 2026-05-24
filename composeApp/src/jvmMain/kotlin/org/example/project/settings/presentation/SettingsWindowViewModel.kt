@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 import org.example.project.common.presentation.Constants
 import org.example.project.settings.data.AnswersDataSource
 
+// Управление состоянием экрана настроек
 class SettingsWindowViewModel(
     private val stateMapper: SettingsWindowMapper,
     private val answersDataSource: AnswersDataSource,
@@ -18,6 +19,7 @@ class SettingsWindowViewModel(
     private var answerAddJob: Job? = null
     private var answerRemoveJob: Job? = null
 
+    // Объединение потока данных из источника и текущей конфигурации в единый Flow объект
     val state = combine(
         answersDataSource.observe(),
         configurationFlow

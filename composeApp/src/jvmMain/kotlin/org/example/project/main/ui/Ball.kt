@@ -89,6 +89,7 @@ private fun TextBall(text: String) {
 
 @Composable
 private fun BaseBall(modifier: Modifier = Modifier) {
+    // Отрисовка базового изображения шара с помощью картинки взятой из ресурсов приложения
     Image(
         painter = painterResource(Res.drawable.ball_image),
         contentDescription = null,

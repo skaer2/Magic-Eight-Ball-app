@@ -24,8 +24,11 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun MainWindow(onSettingsNavigate: () -> Unit) {
+    // Инициализация ViewModel, которая будет управлять логикой данного экрана
     val viewModel = koinViewModel<MainWindowViewModel>()
+    // Подписка на поток состояний из ViewModel с учетом жизненного цикла приложения
     val state by viewModel.state.collectAsStateWithLifecycle()
+    // Передача текущего состояния и функции обработки событий в основной контент экрана
     MainWindowContent(state, viewModel::onEvent, onSettingsNavigate)
 }
 

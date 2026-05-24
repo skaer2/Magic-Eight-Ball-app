@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.key.*
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import magiceight_ball.composeapp.generated.resources.Res
@@ -90,7 +91,7 @@ private fun SettingsWindowContent(state: SettingsWindowState, onEvent: (Settings
                         } else {
                             false
                         }
-                    },
+                    }.testTag("textField"),
                     singleLine = true,
                 )
                 IconButton(

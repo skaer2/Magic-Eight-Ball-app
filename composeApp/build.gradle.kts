@@ -28,13 +28,13 @@ kotlin {
             implementation(libs.koin.compose.viewmodel)
         }
         commonTest.dependencies {
-            implementation(libs.kotlin.test)
 
-            implementation(libs.kotlin.testJunit)
-//            implementation(libs.junit.jupiter.api)
-//            implementation(libs.junit.jupiter.params)
-//            runtimeOnly(libs.junit.jupiter.engine)
-//            runtimeOnly(libs.junit.platform.launcher)
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.11.0")
+            implementation("org.mockito.kotlin:mockito-kotlin:6.3.0")
+            implementation(libs.junit.jupiter.api)
+            implementation(libs.junit.jupiter.params)
+            runtimeOnly(libs.junit.jupiter.engine)
+            runtimeOnly(libs.junit.platform.launcher)
 
             implementation(libs.mockito)
         }
@@ -46,6 +46,11 @@ kotlin {
     }
 }
 
+tasks {
+    "jvmTest"(Test::class) {
+        useJUnitPlatform()
+    }
+}
 
 compose.desktop {
     application {
@@ -58,6 +63,3 @@ compose.desktop {
         }
     }
 }
-//dependencies {
-//    testImplementation(kotlin("test"))
-//}

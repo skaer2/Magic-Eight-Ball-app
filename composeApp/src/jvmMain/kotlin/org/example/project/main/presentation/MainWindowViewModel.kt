@@ -12,30 +12,37 @@ import org.example.project.common.presentation.mapPredictionText
 import org.example.project.settings.data.AnswersDataSource
 
 class MainWindowViewModel(private val answersDataSource: AnswersDataSource) : ViewModel() {
-//    private val answersDataSource = AnswersDataSource.instance
 
+    // Внутреннее поле для управления состоянием, закрытое от доступа извне
     private val _state = MutableStateFlow(MainWindowState.INITIAL)
 
+    // Публичный поток состояния, на который подписывается UI-слой
     val state = _state.asStateFlow()
 
     init {
+        // Асинхронная инициализация источника данных при создании ViewModel
         viewModelScope.launch {
             answersDataSource.init()
         }
     }
 
+    // Обработчик всех событий, поступающих от графического интерфейса
     fun onEvent(event: MainWindowEvent) {
         when (event) {
+            // Реакция на нажатие кнопки получения предсказания
             MainWindowEvent.OnButtonPressed -> {
                 _state.update { it.copy(ball = Ball.Shaking) }
             }
 
+            // Обновление текста введенного пользователем
             is MainWindowEvent.OnQuestionChanged -> {
                 _state.update { it.copy(question = event.question) }
             }
 
+            // Обработка завершения анимации тряски шара
             MainWindowEvent.OnShakingEnd -> {
                 viewModelScope.launch {
+                    // Получение случайного ответа и его форматирование для корректного отображения
                     _state.update { it.copy(ball = Ball.Showing(mapPredictionText(getPredictionText()))) }
                 }
             }
